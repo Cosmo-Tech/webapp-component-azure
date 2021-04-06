@@ -13,7 +13,7 @@
     "directory": "packages/azure"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Cosmo-Tech/webapp-component-azure/issues"
   },
