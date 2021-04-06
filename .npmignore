@@ -1,5 +1,14 @@
+# folder
 assets
 src
+
+# vscode
+.vscode
+
+# idea
+.idea
+
+# config
 rollup.*
 .babelrc
 babel.config.js
