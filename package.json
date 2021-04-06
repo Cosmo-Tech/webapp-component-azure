@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Cosmo-Tech/webapp-react-components.git",
+    "url": "git+https://github.com/Cosmo-Tech/webapp-component-azure.git",
     "directory": "packages/azure"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Cosmo-Tech/webapp-react-components/issues"
+    "url": "https://github.com/Cosmo-Tech/webapp-component-azure/issues"
   },
-  "homepage": "https://github.com/Cosmo-Tech/webapp-react-components#readme",
+  "homepage": "https://github.com/Cosmo-Tech/webapp-component-azure#readme",
   "dependencies": {
     "@azure/msal-browser": "^2.8.0"
   },
