@@ -22,7 +22,8 @@ const name = 'auth-msal'
 const authData = {
   authenticated: false,
   accountId: undefined,
-  username: undefined
+  username: undefined,
+  userId: undefined
 }
 let config = null
 let msalApp = null
@@ -93,10 +94,10 @@ function selectAccount () {
   if (accounts.length > 1) {
     console.warn('Several accounts detected, using the first one by default.')
   }
-
   authData.authenticated = true
   authData.accountId = accounts[0].homeAccountId
   authData.username = accounts[0].name
+  authData.userId = accounts[0].localAccountId
   redirectOnAuthSuccess()
 }
 
@@ -106,6 +107,7 @@ function handleResponse (response) {
     authData.authenticated = true
     authData.accountId = response.account.homeAccountId
     authData.username = response.account.name
+    authData.userId = response.account.localAccountId
     redirectOnAuthSuccess()
   } else {
     selectAccount()
@@ -186,7 +188,14 @@ function getUserName () {
 }
 
 function getUserId () {
-  return authData.accountId
+  if (authData.userId !== undefined) {
+    return authData.userId
+  }
+  const account = msalApp.getAllAccounts()[0]
+  if (account !== undefined) {
+    return account.localAccountId
+  }
+  return undefined
 }
 
 function getUserPicUrl () {
