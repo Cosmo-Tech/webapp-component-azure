@@ -1,24 +1,24 @@
 // Copyright (c) Cosmo Tech.
 // Licensed under the MIT license.
 
-const name = 'auth-static-web-app'
-let authData = null
+const name = 'auth-static-web-app';
+let authData = null;
 
 function getBaseUrl () {
   return window.location.protocol + '//' +
-    window.location.host
+    window.location.host;
 }
 
 function signIn () {
-  window.location.href = getBaseUrl() + '/.auth/login/aad?post_login_redirect_uri=' + getBaseUrl() + '/digitaltwin'
+  window.location.href = getBaseUrl() + '/.auth/login/aad?post_login_redirect_uri=' + getBaseUrl() + '/digitaltwin';
 }
 
 function signOut () {
-  window.location.href = getBaseUrl() + '/.auth/logout?post_logout_redirect_uri=' + getBaseUrl()
+  window.location.href = getBaseUrl() + '/.auth/logout?post_logout_redirect_uri=' + getBaseUrl();
 }
 
 function isAsync () {
-  return true
+  return true;
 }
 
 // TODO: use Error-First Callback pattern (warning: doing so may break
@@ -26,10 +26,10 @@ function isAsync () {
 function isUserSignedIn (callbackFunction) {
   // Return true if already authenticated
   if (authData) {
-    callbackFunction(authData !== null)
+    callbackFunction(authData !== null);
   }
   // Otherwise, try to acquire a token silently to implement SSO
-  acquireUserInfo(callbackFunction)
+  acquireUserInfo(callbackFunction);
 }
 
 // TODO: use Error-First Callback pattern (warning: doing so may break
@@ -38,31 +38,31 @@ function acquireUserInfo (callbackFunction) {
   fetch(getBaseUrl() + '/.auth/me')
     .then(response => response.json())
     .then(data => {
-      authData = data.clientPrincipal
-      callbackFunction(authData !== null)
+      authData = data.clientPrincipal;
+      callbackFunction(authData !== null);
     })
     .catch(error => {
-      console.error(error)
-      callbackFunction(false)
-    })
+      console.error(error);
+      callbackFunction(false);
+    });
 }
 
 function getUserName () {
   if (authData) {
-    return authData.userDetails
+    return authData.userDetails;
   }
-  return undefined
+  return undefined;
 }
 
 function getUserId () {
   if (authData) {
-    return authData.userId
+    return authData.userId;
   }
-  return undefined
+  return undefined;
 }
 
 function getUserPicUrl () {
-  return undefined
+  return undefined;
 }
 
 const AuthStaticWebApp = {
@@ -74,5 +74,5 @@ const AuthStaticWebApp = {
   getUserId,
   getUserPicUrl,
   isAsync
-}
-export default AuthStaticWebApp
+};
+export default AuthStaticWebApp;
