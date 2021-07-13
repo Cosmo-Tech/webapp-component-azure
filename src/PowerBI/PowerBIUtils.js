@@ -48,15 +48,18 @@ const constructDynamicFilters = (filtersConfig, objectToFilter) => {
 
 const constructScenarioDTO = (scenario) => {
   let result;
+  let csmSimRun = scenario?.lastRun?.csmSimulationRun === undefined
+    ? null
+    : scenario?.lastRun?.csmSimulationRun;
   if (scenario !== undefined) {
     result = new ScenarioDTO(scenario.id,
-        scenario.name,
-        scenario.state,
-        scenario?.lastRun?.csmSimulationRun,
-        scenario.rootId,
-        scenario.parentId,
-        scenario.ownerId,
-        scenario.solutionId)
+      scenario.name,
+      scenario.state,
+      csmSimRun,
+      scenario.rootId,
+      scenario.parentId,
+      scenario.ownerId,
+      scenario.solutionId)
   }
   return result;
 }
