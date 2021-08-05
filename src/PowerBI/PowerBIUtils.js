@@ -20,7 +20,7 @@ function constructDynamicValue (filterValue, objectToFilter) {
 const constructDynamicFilters = (filtersConfig, objectToFilter) => {
   const result = [];
 
-  if (!objectToFilter) {
+  if (!objectToFilter || !filtersConfig) {
     return result;
   }
 
