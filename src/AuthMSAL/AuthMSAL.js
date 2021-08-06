@@ -46,7 +46,7 @@ function redirectOnAuthSuccess () {
   window.location.href = '/';
 }
 
-async function acquireTokenSilent () {
+async function acquireTokens () {
   if (!checkInit()) {
     return;
   }
@@ -161,7 +161,7 @@ async function isUserSignedIn () {
     return true;
   }
   // Otherwise, try to acquire a token silently to implement SSO
-  const tokens = await acquireTokenSilent();
+  const tokens = await acquireTokens();
   if (tokens !== undefined && tokens.idToken !== undefined) {
     writeToStorage('authIdToken', tokens.idToken);
   }
@@ -211,6 +211,7 @@ const AuthMSAL = {
   getUserId,
   getUserPicUrl,
   isAsync,
-  setConfig
+  setConfig,
+  acquireTokens
 };
 export default AuthMSAL;
