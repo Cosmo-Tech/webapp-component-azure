@@ -126,7 +126,8 @@ function signIn () {
       // Error handling
       if (error.errorMessage) {
         // Check for forgot password error
-        // Learn more about AAD error codes at https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-aadsts-error-codes
+        // Learn more about AAD error codes at
+        // https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-aadsts-error-codes
         if (error.errorMessage.indexOf('AADB2C90118') > -1) {
           msalApp.loginPopup(config.b2cPolicies.authorities.forgotPassword)
             .then(response => {
