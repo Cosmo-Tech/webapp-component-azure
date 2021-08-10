@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 import { PowerBIReportEmbedSimpleFilter, PowerBIReportEmbedMultipleFilter } from './PowerBIReportEmbedFilter';
-import { ScenarioDTO } from "./ScenarioDTO";
+import { ScenarioDTO } from './ScenarioDTO';
 
 function constructDynamicValue (filterValue, objectToFilter) {
   if (filterValue === undefined) {
@@ -31,18 +31,18 @@ const constructDynamicFilters = (filtersConfig, objectToFilter) => {
       const values = [];
       for (const filterValue of filterValues) {
         const value = constructDynamicValue(filterValue, objectToFilter, filterConfig);
-        if(value !== undefined){
+        if (value !== undefined) {
           values.push(value);
         }
       }
-      if(values.length !== 0){
+      if (values.length !== 0) {
         filter = new PowerBIReportEmbedMultipleFilter(filterConfig.target.table, filterConfig.target.column, values);
         result.push(filter);
       }
     } else if (typeof filterValues === 'string') {
       const filterValue = filterConfig.values;
       const value = constructDynamicValue(filterValue, objectToFilter, filterConfig);
-      if(value !== undefined){
+      if (value !== undefined) {
         filter = new PowerBIReportEmbedSimpleFilter(filterConfig.target.table, filterConfig.target.column, [value]);
         result.push(filter);
       }
@@ -56,20 +56,19 @@ const constructScenarioDTO = (scenario) => {
     return null;
   }
 
-  let csmSimRun = scenario?.lastRun?.csmSimulationRun === undefined
-      ? null
-      : scenario?.lastRun?.csmSimulationRun;
+  const csmSimRun = scenario?.lastRun?.csmSimulationRun === undefined
+    ? null
+    : scenario?.lastRun?.csmSimulationRun;
 
   return new ScenarioDTO(scenario.id,
-      scenario.name,
-      scenario.state,
-      csmSimRun,
-      scenario.rootId,
-      scenario.parentId,
-      scenario.ownerId,
-      scenario.solutionId);
-}
-
+    scenario.name,
+    scenario.state,
+    csmSimRun,
+    scenario.rootId,
+    scenario.parentId,
+    scenario.ownerId,
+    scenario.solutionId);
+};
 
 export const PowerBIUtils = {
   constructDynamicFilters,
