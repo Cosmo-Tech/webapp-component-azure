@@ -60,14 +60,15 @@ const constructScenarioDTO = (scenario) => {
     ? null
     : scenario?.lastRun?.csmSimulationRun;
 
-  return new ScenarioDTO(scenario.id,
-    scenario.name,
-    scenario.state,
-    csmSimRun,
-    scenario.rootId,
-    scenario.parentId,
-    scenario.ownerId,
-    scenario.solutionId);
+  const scenarioDTO = new ScenarioDTO(scenario.id,
+      scenario.name,
+      scenario.state,
+      csmSimRun,
+      scenario.rootId === null? scenario.id:scenario.rootId,
+      scenario.parentId,
+      scenario.ownerId,
+      scenario.solutionId);
+  return scenarioDTO;
 };
 
 export const PowerBIUtils = {
