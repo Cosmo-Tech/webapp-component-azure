@@ -14,7 +14,7 @@ export class ScenarioDTO {
     this.name = name;
     this.state = state;
     this.csmSimulationRun = csmSimulationRun;
-    this.masterId = masterId;
+    this.masterId = masterId === null ? id : masterId;
     this.parentId = parentId;
     this.ownerId = ownerId;
     this.solutionId = solutionId;

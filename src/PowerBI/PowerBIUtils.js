@@ -64,7 +64,7 @@ const constructScenarioDTO = (scenario) => {
       scenario.name,
       scenario.state,
       csmSimRun,
-      scenario.rootId === null? scenario.id:scenario.rootId,
+      scenario.rootId,
       scenario.parentId,
       scenario.ownerId,
       scenario.solutionId);
