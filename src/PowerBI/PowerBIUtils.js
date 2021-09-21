@@ -61,13 +61,13 @@ const constructScenarioDTO = (scenario) => {
     : scenario?.lastRun?.csmSimulationRun;
 
   const scenarioDTO = new ScenarioDTO(scenario.id,
-      scenario.name,
-      scenario.state,
-      csmSimRun,
-      scenario.rootId,
-      scenario.parentId,
-      scenario.ownerId,
-      scenario.solutionId);
+    scenario.name,
+    scenario.state,
+    csmSimRun,
+    scenario.rootId,
+    scenario.parentId,
+    scenario.ownerId,
+    scenario.solutionId);
   return scenarioDTO;
 };
 
