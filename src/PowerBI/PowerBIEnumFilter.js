@@ -9,5 +9,5 @@ export const POWER_BI_FIELD_ENUM = {
   SCENARIO_MASTER_ID: 'masterId',
   SCENARIO_PARENT_ID: 'parentId',
   SCENARIO_OWNER_ID: 'ownerId',
-  SCENARIO_SOLUTION_ID: 'solutionId'
+  SCENARIO_SOLUTION_ID: 'solutionId',
 };

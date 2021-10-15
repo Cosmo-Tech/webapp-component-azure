@@ -11,7 +11,7 @@ const config = {
   input: './src/index.js',
   output: [
     { file: pkg.main, format: 'cjs' },
-    { file: pkg.module, format: 'esm' }
+    { file: pkg.module, format: 'esm' },
   ],
   plugins: [
     external(),
@@ -19,16 +19,13 @@ const config = {
     babel({
       exclude: 'node_modules/**',
       babelHelpers: 'bundled',
-      presets: [
-        '@babel/preset-env',
-        '@babel/preset-react'
-      ]
+      presets: ['@babel/preset-env', '@babel/preset-react'],
     }),
     resolve(),
     commonjs(),
     image(),
-    visualizer()
-  ]
+    visualizer(),
+  ],
 };
 
 export default config;

@@ -7,5 +7,5 @@ export {
   PowerBIReportEmbedMultipleFilter,
   PowerBIUtils,
   ScenarioDTO,
-  POWER_BI_FIELD_ENUM
+  POWER_BI_FIELD_ENUM,
 } from './PowerBI';

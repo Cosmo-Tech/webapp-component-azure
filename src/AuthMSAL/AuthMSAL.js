@@ -7,14 +7,14 @@ import * as msal from '@azure/msal-browser';
 // Notes : local storage works on Chromium but not on Firefox if "Delete
 // cookies and site data when Firefox is closed" is selected (for more
 // details, see https://bugzilla.mozilla.org/show_bug.cgi?id=1453699)
-function writeToStorage (key, value) {
+function writeToStorage(key, value) {
   localStorage.setItem(key, value);
 }
 // eslint-disable-next-line no-unused-vars
-function readFromStorage (key) {
+function readFromStorage(key) {
   return localStorage.getItem(key);
 }
-function clearFromStorage (key) {
+function clearFromStorage(key) {
   localStorage.removeItem(key);
 }
 
@@ -23,30 +23,32 @@ const authData = {
   authenticated: false,
   accountId: undefined,
   username: undefined,
-  userId: undefined
+  userId: undefined,
 };
 let config = null;
 let msalApp = null;
 
-function setConfig (newConfig) {
+function setConfig(newConfig) {
   config = newConfig;
   msalApp = new msal.PublicClientApplication(config.msalConfig);
 }
 
-function checkInit () {
+function checkInit() {
   if (msalApp === null) {
-    console.error('AuthMSAL module has not been initialized. Make sure you ' +
-      'call the setConfig function when you add the AuthMSAL provider.');
+    console.error(
+      'AuthMSAL module has not been initialized. Make sure you ' +
+        'call the setConfig function when you add the AuthMSAL provider.'
+    );
     return false;
   }
   return true;
 }
 
-function redirectOnAuthSuccess () {
+function redirectOnAuthSuccess() {
   window.location.href = '/';
 }
 
-async function acquireTokens () {
+async function acquireTokens() {
   if (!checkInit()) {
     return;
   }
@@ -56,32 +58,38 @@ async function acquireTokens () {
   if (!tokenReq) {
     console.warn('No base access token request provided');
     tokenReq = {
-      scopes: ['user.read']
+      scopes: ['user.read'],
     };
   }
 
   tokenReq.account = account;
 
-  return await msalApp.acquireTokenSilent(tokenReq).then(function (tokenRes) {
-    return tokenRes;
-  }).catch(function (error) {
-    if (error.errorMessage === undefined) {
-      console.error(error);
-    } else if (error.errorMessage.indexOf('interaction_required') !== -1) {
-      msalApp.acquireTokenPopup(tokenReq).then(function (tokenRes) {
-        // Token acquired with interaction
-        return tokenRes;
-      }).catch(function (error) {
-        // Token retrieval failed
-        console.warn(error);
-        return undefined;
-      });
-    }
-    return undefined;
-  });
+  return await msalApp
+    .acquireTokenSilent(tokenReq)
+    .then(function (tokenRes) {
+      return tokenRes;
+    })
+    .catch(function (error) {
+      if (error.errorMessage === undefined) {
+        console.error(error);
+      } else if (error.errorMessage.indexOf('interaction_required') !== -1) {
+        msalApp
+          .acquireTokenPopup(tokenReq)
+          .then(function (tokenRes) {
+            // Token acquired with interaction
+            return tokenRes;
+          })
+          .catch(function (error) {
+            // Token retrieval failed
+            console.warn(error);
+            return undefined;
+          });
+      }
+      return undefined;
+    });
 }
 
-function selectAccount () {
+function selectAccount() {
   if (!checkInit()) {
     return;
   }
@@ -101,7 +109,7 @@ function selectAccount () {
   redirectOnAuthSuccess();
 }
 
-function handleResponse (response) {
+function handleResponse(response) {
   writeToStorage('authIdTokenPopup', response.idToken);
   if (response !== null) {
     authData.authenticated = true;
@@ -114,14 +122,15 @@ function handleResponse (response) {
   }
 }
 
-function signIn () {
+function signIn() {
   if (!checkInit()) {
     return;
   }
 
-  msalApp.loginPopup(config.loginRequest)
+  msalApp
+    .loginPopup(config.loginRequest)
     .then(handleResponse)
-    .catch(error => {
+    .catch((error) => {
       console.error(error);
       // Error handling
       if (error.errorMessage) {
@@ -129,16 +138,15 @@ function signIn () {
         // Learn more about AAD error codes at
         // https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-aadsts-error-codes
         if (error.errorMessage.indexOf('AADB2C90118') > -1) {
-          msalApp.loginPopup(config.b2cPolicies.authorities.forgotPassword)
-            .then(response => {
-              window.alert('Password has been reset successfully. \nPlease sign-in with your new password.');
-            });
+          msalApp.loginPopup(config.b2cPolicies.authorities.forgotPassword).then((response) => {
+            window.alert('Password has been reset successfully. \nPlease sign-in with your new password.');
+          });
         }
       }
     });
 }
 
-function signOut () {
+function signOut() {
   if (!checkInit()) {
     return;
   }
@@ -147,16 +155,16 @@ function signOut () {
   clearFromStorage('authIdToken');
   clearFromStorage('authAccessToken');
   const logoutRequest = {
-    account: msalApp.getAccountByHomeId(authData.accountId)
+    account: msalApp.getAccountByHomeId(authData.accountId),
   };
   msalApp.logout(logoutRequest);
 }
 
-function isAsync () {
+function isAsync() {
   return false;
 }
 
-async function isUserSignedIn () {
+async function isUserSignedIn() {
   // Return true if already authenticated
   if (authData.authenticated) {
     return true;
@@ -173,7 +181,7 @@ async function isUserSignedIn () {
   return false;
 }
 
-function getUserName () {
+function getUserName() {
   if (!checkInit()) {
     return;
   }
@@ -188,7 +196,7 @@ function getUserName () {
   return undefined;
 }
 
-function getUserId () {
+function getUserId() {
   if (authData.userId !== undefined) {
     return authData.userId;
   }
@@ -199,7 +207,7 @@ function getUserId () {
   return undefined;
 }
 
-function getUserPicUrl () {
+function getUserPicUrl() {
   return undefined;
 }
 
@@ -213,6 +221,6 @@ const AuthMSAL = {
   getUserPicUrl,
   isAsync,
   setConfig,
-  acquireTokens
+  acquireTokens,
 };
 export default AuthMSAL;

@@ -4,7 +4,7 @@
 import { PowerBIReportEmbedSimpleFilter, PowerBIReportEmbedMultipleFilter } from './PowerBIReportEmbedFilter';
 import { ScenarioDTO } from './ScenarioDTO';
 
-function constructDynamicValue (filterValue, objectToFilter) {
+function constructDynamicValue(filterValue, objectToFilter) {
   if (filterValue === undefined) {
     throw new Error('value path is undefined');
   }
@@ -56,22 +56,22 @@ const constructScenarioDTO = (scenario) => {
     return null;
   }
 
-  const csmSimRun = scenario?.lastRun?.csmSimulationRun === undefined
-    ? null
-    : scenario?.lastRun?.csmSimulationRun;
+  const csmSimRun = scenario?.lastRun?.csmSimulationRun === undefined ? null : scenario?.lastRun?.csmSimulationRun;
 
-  const scenarioDTO = new ScenarioDTO(scenario.id,
+  const scenarioDTO = new ScenarioDTO(
+    scenario.id,
     scenario.name,
     scenario.state,
     csmSimRun,
     scenario.rootId,
     scenario.parentId,
     scenario.ownerId,
-    scenario.solutionId);
+    scenario.solutionId
+  );
   return scenarioDTO;
 };
 
 export const PowerBIUtils = {
   constructDynamicFilters,
-  constructScenarioDTO
+  constructScenarioDTO,
 };

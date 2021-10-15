@@ -2,7 +2,7 @@
 // Licensed under the MIT license.
 
 export class PowerBIReportEmbedSimpleFilter {
-  constructor (table, column, acceptedValue) {
+  constructor(table, column, acceptedValue) {
     this.$schema = 'http://powerbi.com/product/schema#basic';
     this.target = new PowerBIReportEmbedTarget(table, column);
     this.operator = 'eq';
@@ -11,7 +11,7 @@ export class PowerBIReportEmbedSimpleFilter {
 }
 
 export class PowerBIReportEmbedMultipleFilter {
-  constructor (table, column, acceptedValues) {
+  constructor(table, column, acceptedValues) {
     if (!Array.isArray(acceptedValues)) {
       throw new Error('acceptedValues should be an array');
     }
@@ -23,7 +23,7 @@ export class PowerBIReportEmbedMultipleFilter {
 }
 
 class PowerBIReportEmbedTarget {
-  constructor (table, column) {
+  constructor(table, column) {
     if (typeof table !== 'string' || typeof column !== 'string') {
       throw new Error('table and column should be a string');
     }
