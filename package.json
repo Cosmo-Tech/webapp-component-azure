@@ -7,8 +7,9 @@
   "module": "dist/index.esm.js",
   "scripts": {
     "build": "rollup -c",
-    "eslint": "eslint $INIT_CWD",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "eslint": "eslint",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "npx prettier -w"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,10 @@
   },
   "homepage": "https://github.com/Cosmo-Tech/webapp-component-azure#readme",
   "dependencies": {
-    "@azure/msal-browser": "^2.8.0"
+    "@azure/msal-browser": "^2.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.4.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
