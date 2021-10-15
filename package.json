@@ -21,7 +21,10 @@
   },
   "homepage": "https://github.com/Cosmo-Tech/webapp-component-azure#readme",
   "dependencies": {
-    "@azure/msal-browser": "^2.8.0"
+    "@azure/msal-browser": "^2.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.4.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
