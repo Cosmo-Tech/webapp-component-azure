@@ -49,12 +49,15 @@ function redirectOnAuthSuccess() {
 }
 
 async function acquireTokens() {
+  return await acquireTokensByRequest(config.accessRequest);
+}
+
+async function acquireTokensByRequest(tokenReq) {
   if (!checkInit()) {
     return;
   }
 
   const account = msalApp.getAllAccounts()[0];
-  let tokenReq = config.accessRequest;
   if (!tokenReq) {
     console.warn('No base access token request provided');
     tokenReq = {
@@ -222,5 +225,6 @@ const AuthMSAL = {
   isAsync,
   setConfig,
   acquireTokens,
+  acquireTokensByRequest,
 };
 export default AuthMSAL;
