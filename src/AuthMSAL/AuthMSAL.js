@@ -48,13 +48,7 @@ function redirectOnAuthSuccess() {
   window.location.href = '/';
 }
 
-async function acquireTokens() {
-  if (!checkInit()) {
-    return;
-  }
-
-  const account = msalApp.getAllAccounts()[0];
-  let tokenReq = config.accessRequest;
+async function _acquireTokensByRequestAndAccount(tokenReq, account) {
   if (!tokenReq) {
     console.warn('No base access token request provided');
     tokenReq = {
@@ -87,6 +81,25 @@ async function acquireTokens() {
       }
       return undefined;
     });
+}
+
+async function acquireTokens() {
+  if (!checkInit()) {
+    return;
+  }
+
+  const account = msalApp.getAllAccounts()[0];
+  const tokenReq = config.accessRequest;
+  return await _acquireTokensByRequestAndAccount(tokenReq, account);
+}
+
+async function acquireTokensByRequest(tokenReq) {
+  if (!checkInit()) {
+    return;
+  }
+
+  const account = msalApp.getAllAccounts()[0];
+  return await _acquireTokensByRequestAndAccount(tokenReq, account);
 }
 
 function selectAccount() {
@@ -222,5 +235,6 @@ const AuthMSAL = {
   isAsync,
   setConfig,
   acquireTokens,
+  acquireTokensByRequest,
 };
 export default AuthMSAL;
