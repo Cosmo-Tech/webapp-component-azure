@@ -24,6 +24,7 @@ const authData = {
   accountId: undefined,
   username: undefined,
   userId: undefined,
+  roles: [],
 };
 let config = null;
 let msalApp = null;
