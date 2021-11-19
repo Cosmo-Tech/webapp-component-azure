@@ -24,6 +24,7 @@ const authData = {
   accountId: undefined,
   username: undefined,
   userId: undefined,
+  roles: [],
 };
 let config = null;
 let msalApp = null;
@@ -116,9 +117,10 @@ function selectAccount() {
     console.warn('Several accounts detected, using the first one by default.');
   }
   authData.authenticated = true;
-  authData.accountId = accounts[0].homeAccountId;
-  authData.username = accounts[0].name;
-  authData.userId = accounts[0].localAccountId;
+  const account = accounts[0];
+  authData.accountId = account.homeAccountId;
+  authData.username = account.name;
+  authData.userId = account.localAccountId;
   redirectOnAuthSuccess();
 }
 
@@ -126,9 +128,10 @@ function handleResponse(response) {
   writeToStorage('authIdTokenPopup', response.idToken);
   if (response !== null) {
     authData.authenticated = true;
-    authData.accountId = response.account.homeAccountId;
-    authData.username = response.account.name;
-    authData.userId = response.account.localAccountId;
+    const account = response.account;
+    authData.accountId = account.homeAccountId;
+    authData.username = account.name;
+    authData.userId = account.localAccountId;
     redirectOnAuthSuccess();
   } else {
     selectAccount();
@@ -177,6 +180,17 @@ function isAsync() {
   return false;
 }
 
+function _extractRolesFromAccessToken(accessToken) {
+  let result = [];
+  if (accessToken) {
+    const decodedToken = JSON.parse(atob(accessToken.split('.')[1]));
+    if (decodedToken?.roles) {
+      result = decodedToken?.roles;
+    }
+  }
+  return result;
+}
+
 async function isUserSignedIn() {
   // Return true if already authenticated
   if (authData.authenticated) {
@@ -188,7 +202,9 @@ async function isUserSignedIn() {
     writeToStorage('authIdToken', tokens.idToken);
   }
   if (tokens !== undefined && tokens.accessToken !== undefined) {
-    writeToStorage('authAccessToken', tokens.accessToken);
+    const accessToken = tokens.accessToken;
+    authData.roles = _extractRolesFromAccessToken(accessToken);
+    writeToStorage('authAccessToken', accessToken);
     return true;
   }
   return false;
@@ -220,6 +236,10 @@ function getUserId() {
   return undefined;
 }
 
+function getUserRoles() {
+  return authData.roles;
+}
+
 function getUserPicUrl() {
   return undefined;
 }
@@ -231,6 +251,7 @@ const AuthMSAL = {
   isUserSignedIn,
   getUserName,
   getUserId,
+  getUserRoles,
   getUserPicUrl,
   isAsync,
   setConfig,
