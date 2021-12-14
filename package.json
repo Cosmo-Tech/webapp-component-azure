@@ -22,10 +22,7 @@
   },
   "homepage": "https://github.com/Cosmo-Tech/webapp-component-azure#readme",
   "dependencies": {
-    "@azure/msal-browser": "^2.8.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.4.1"
+    "@azure/msal-browser": "^2.8.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
@@ -37,11 +34,14 @@
     "@rollup/plugin-image": "^2.0.5",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "eslint": "^7.19.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^5.1.0",
     "postcss": "^8.1.0",
+    "prettier": "^2.5.1",
     "rollup": "^2.34.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.0",
