@@ -1,3 +1,7 @@
+## **1.1.19** <sub><sup>2022-04-29</sup></sub>
+
+- update dependencies
+
 ## **1.1.18** <sub><sup>2022-04-04</sup></sub>
 
 - update dependencies
