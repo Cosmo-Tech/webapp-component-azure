@@ -32,6 +32,15 @@ let msalApp = null;
 function setConfig(newConfig) {
   config = newConfig;
   msalApp = new msal.PublicClientApplication(config.msalConfig);
+  msalApp
+    .handleRedirectPromise()
+    .then((tokenResponse) => {
+      // Handle redirect response
+    })
+    .catch((error) => {
+      console.log('handleRedirectPromise error');
+      console.log(error);
+    });
 }
 
 function checkInit() {
@@ -125,16 +134,23 @@ function selectAccount() {
 }
 
 function handleResponse(response) {
-  writeToStorage('authIdTokenPopup', response.idToken);
-  if (response !== null) {
-    authData.authenticated = true;
-    const account = response.account;
-    authData.accountId = account.homeAccountId;
-    authData.username = account.name;
-    authData.userId = account.localAccountId;
-    redirectOnAuthSuccess();
-  } else {
-    selectAccount();
+  try {
+    if (response) {
+      writeToStorage('authIdTokenPopup', response.idToken);
+      authData.authenticated = true;
+      const account = response.account;
+      authData.accountId = account.homeAccountId;
+      authData.username = account.name;
+      authData.userId = account.localAccountId;
+      redirectOnAuthSuccess();
+    } else {
+      selectAccount();
+    }
+  } catch (error) {
+    console.log('handleResponse error');
+    console.log(error);
+    console.log('handleResponse error 2');
+    return error;
   }
 }
 
@@ -143,12 +159,12 @@ function signIn() {
     return;
   }
 
-  msalApp
+  return msalApp
     .loginPopup(config.loginRequest)
-    .then(handleResponse)
+    .then(() => {
+      return handleResponse();
+    })
     .catch((error) => {
-      console.error(error);
-      // Error handling
       if (error.errorMessage) {
         // Check for forgot password error
         // Learn more about AAD error codes at
@@ -158,6 +174,7 @@ function signIn() {
             window.alert('Password has been reset successfully. \nPlease sign-in with your new password.');
           });
         }
+        return error.errorMessage;
       }
     });
 }
