@@ -1,3 +1,9 @@
+## **1.1.20** <sub><sup>2022-05-19 (69825f4...9aa473b)</sup></sub>
+
+### Bug Fixes
+
+- improve handling of errors during authentication ([a11487c](https://github.com/Cosmo-Tech/webapp-component-azure/commit/a11487c))
+
 ## **1.1.19** <sub><sup>2022-04-29</sup></sub>
 
 - update dependencies
