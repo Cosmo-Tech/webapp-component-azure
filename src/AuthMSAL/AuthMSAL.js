@@ -64,23 +64,21 @@ async function _acquireTokensByRequestAndAccount(tokenReq, account) {
     .then(function (tokenRes) {
       return tokenRes;
     })
-    .catch(function (error) {
-      if (error.errorMessage === undefined) {
-        console.error(error);
-      } else if (error.errorMessage.indexOf('interaction_required') !== -1) {
+    .catch(function (silentTokenFetchError) {
+      if (silentTokenFetchError.errorCode === 'no_tokens_found') {
+        // No token found during acquireTokenSilent, ignore this error, nothing to do
+        return;
+      } else if (silentTokenFetchError.errorMessage?.indexOf('interaction_required') !== -1) {
         msalApp
           .acquireTokenPopup(tokenReq)
           .then(function (tokenRes) {
-            // Token acquired with interaction
-            return tokenRes;
+            return tokenRes; // Token acquired with interaction
           })
-          .catch(function (error) {
-            // Token retrieval failed
-            console.warn(error);
-            return undefined;
+          .catch(function (popupTokenFetchError) {
+            throw popupTokenFetchError; // Token retrieval failed
           });
       }
-      return undefined;
+      throw silentTokenFetchError;
     });
 }
 
@@ -91,6 +89,10 @@ async function acquireTokens() {
 
   const account = msalApp.getAllAccounts()[0];
   const tokenReq = config.accessRequest;
+  if (account === undefined) {
+    return undefined;
+  }
+
   return await _acquireTokensByRequestAndAccount(tokenReq, account);
 }
 
@@ -142,22 +144,22 @@ function signIn() {
   if (!checkInit()) {
     return;
   }
-
-  msalApp
+  return msalApp
     .loginPopup(config.loginRequest)
     .then(handleResponse)
     .catch((error) => {
-      console.error(error);
       // Error handling
-      if (error.errorMessage) {
-        // Check for forgot password error
-        // Learn more about AAD error codes at
-        // https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-aadsts-error-codes
-        if (error.errorMessage.indexOf('AADB2C90118') > -1) {
-          msalApp.loginPopup(config.b2cPolicies.authorities.forgotPassword).then((response) => {
-            window.alert('Password has been reset successfully. \nPlease sign-in with your new password.');
-          });
-        }
+      // Check for forgot password error
+      // Learn more about AAD error codes at
+      // https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-aadsts-error-codes
+      if (error.errorMessage?.indexOf('AADB2C90118') > -1) {
+        msalApp.loginPopup(config.b2cPolicies.authorities.forgotPassword).then((response) => {
+          window.alert('Password has been reset successfully. \nPlease sign-in with your new password.');
+        });
+      } else if (error.errorCode === 'user_cancelled') {
+        // User cancelled login, nothing to do
+      } else {
+        throw error;
       }
     });
 }
@@ -173,7 +175,7 @@ function signOut() {
   const logoutRequest = {
     account: msalApp.getAccountByHomeId(authData.accountId),
   };
-  msalApp.logout(logoutRequest);
+  msalApp.logoutRedirect(logoutRequest);
 }
 
 function isAsync() {
@@ -198,10 +200,10 @@ async function isUserSignedIn() {
   }
   // Otherwise, try to acquire a token silently to implement SSO
   const tokens = await acquireTokens();
-  if (tokens !== undefined && tokens.idToken !== undefined) {
+  if (tokens?.idToken !== undefined) {
     writeToStorage('authIdToken', tokens.idToken);
   }
-  if (tokens !== undefined && tokens.accessToken !== undefined) {
+  if (tokens?.accessToken !== undefined) {
     const accessToken = tokens.accessToken;
     authData.roles = _extractRolesFromAccessToken(accessToken);
     writeToStorage('authAccessToken', accessToken);
