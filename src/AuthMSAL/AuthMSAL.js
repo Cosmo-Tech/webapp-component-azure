@@ -214,31 +214,22 @@ async function isUserSignedIn() {
 
 function getUserName() {
   if (!checkInit()) {
-    return;
+    return undefined;
   }
-
-  if (authData.username !== undefined) {
-    return authData.username;
-  }
-  const account = msalApp.getAllAccounts()[0];
-  if (account !== undefined) {
-    return account.name;
-  }
-  return undefined;
+  return authData?.name || msalApp.getAllAccounts()[0]?.name;
 }
 
 function getUserId() {
-  if (authData.userId !== undefined) {
-    return authData.userId;
+  if (!checkInit()) {
+    return undefined;
   }
-  const account = msalApp.getAllAccounts()[0];
-  if (account !== undefined) {
-    return account.localAccountId;
-  }
-  return undefined;
+  return authData?.userId || msalApp.getAllAccounts()[0]?.localAccountId;
 }
 
 function getUserRoles() {
+  if (!checkInit()) {
+    return undefined;
+  }
   return authData.roles;
 }
 
