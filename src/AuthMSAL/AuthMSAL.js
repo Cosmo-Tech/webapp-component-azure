@@ -22,6 +22,7 @@ const name = 'auth-msal';
 const authData = {
   authenticated: false,
   accountId: undefined,
+  userEmail: undefined,
   username: undefined,
   userId: undefined,
   roles: [],
@@ -121,6 +122,7 @@ function selectAccount() {
   authData.authenticated = true;
   const account = accounts[0];
   authData.accountId = account.homeAccountId;
+  authData.userEmail = account.username; // In MSAL account data, username property contains user email
   authData.username = account.name;
   authData.userId = account.localAccountId;
   redirectOnAuthSuccess();
@@ -132,6 +134,7 @@ function handleResponse(response) {
     authData.authenticated = true;
     const account = response.account;
     authData.accountId = account.homeAccountId;
+    authData.userEmail = account.username; // In MSAL account data, username property contains user email
     authData.username = account.name;
     authData.userId = account.localAccountId;
     redirectOnAuthSuccess();
@@ -212,6 +215,14 @@ async function isUserSignedIn() {
   return false;
 }
 
+function getUserEmail() {
+  if (!checkInit()) {
+    return undefined;
+  }
+  // Note: account data from MSAL seems to contain user email in the 'username' property
+  return authData?.userEmail || msalApp.getAllAccounts()[0]?.username;
+}
+
 function getUserName() {
   if (!checkInit()) {
     return undefined;
@@ -242,6 +253,7 @@ const AuthMSAL = {
   signIn,
   signOut,
   isUserSignedIn,
+  getUserEmail,
   getUserName,
   getUserId,
   getUserRoles,
