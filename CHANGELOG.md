@@ -1,3 +1,7 @@
+## **1.1.22** <sub><sup>2022-09-16 (03011f1...0dccd67)</sup></sub>
+
+- update dependencies
+
 ## **1.1.21** <sub><sup>2022-08-12 (7f8e9d1...bdf9630)</sup></sub>
 
 - update dependencies
