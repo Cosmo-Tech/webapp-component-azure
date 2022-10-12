@@ -1,3 +1,9 @@
+## **1.2.0** <sub><sup>2022-10-12 (d8c20f9...b298459)</sup></sub>
+
+### Features
+*  add user email in auth data ([b298459](https://github.com/Cosmo-Tech/webapp-component-azure/commit/b298459))
+
+
 ## **1.1.22** <sub><sup>2022-09-16 (03011f1...0dccd67)</sup></sub>
 
 - update dependencies
