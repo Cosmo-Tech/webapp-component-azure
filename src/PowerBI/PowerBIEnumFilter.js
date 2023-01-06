@@ -10,4 +10,7 @@ export const POWER_BI_FIELD_ENUM = {
   SCENARIO_PARENT_ID: 'parentId',
   SCENARIO_OWNER_ID: 'ownerId',
   SCENARIO_SOLUTION_ID: 'solutionId',
+  VISIBLE_SCENARIOS_IDS: 'visibleScenariosIds',
+  VISIBLE_SCENARIOS_SIMULATION_RUNS_IDS: 'visibleScenariosSimulationRunsIds',
+  VISIBLE_SCENARIOS_CSM_SIMULATION_RUNS: 'visibleScenariosCsmSimulationRunsIds',
 };

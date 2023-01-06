@@ -2,7 +2,19 @@
 // Licensed under the MIT license.
 
 export class ScenarioDTO {
-  constructor(id, name, state, csmSimulationRun, masterId, parentId, ownerId, solutionId) {
+  constructor(
+    id,
+    name,
+    state,
+    csmSimulationRun,
+    masterId,
+    parentId,
+    ownerId,
+    solutionId,
+    visibleScenariosIds,
+    visibleScenariosSimulationRunsIds,
+    visibleScenariosCsmSimulationRunsIds
+  ) {
     this.id = id;
     this.name = name;
     this.state = state;
@@ -11,5 +23,8 @@ export class ScenarioDTO {
     this.parentId = parentId;
     this.ownerId = ownerId;
     this.solutionId = solutionId;
+    this.visibleScenariosIds = visibleScenariosIds;
+    this.visibleScenariosSimulationRunsIds = visibleScenariosSimulationRunsIds;
+    this.visibleScenariosCsmSimulationRunsIds = visibleScenariosCsmSimulationRunsIds;
   }
 }

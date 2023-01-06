@@ -12,14 +12,13 @@ function constructDynamicValue(filterValue, objectToFilter) {
     return o && o[k];
   }, objectToFilter);
   if (res === undefined) {
-    console.log(filterValue + ' is not a valid path!!! Please adapt the configuration');
+    console.warn(`"${filterValue}" is not a valid path. Please adapt the configuration`);
   }
   return res;
 }
 
 const constructDynamicFilters = (filtersConfig, objectToFilter) => {
   const result = [];
-
   if (!objectToFilter || !filtersConfig) {
     return result;
   }
@@ -32,7 +31,13 @@ const constructDynamicFilters = (filtersConfig, objectToFilter) => {
       for (const filterValue of filterValues) {
         const value = constructDynamicValue(filterValue, objectToFilter, filterConfig);
         if (value !== undefined) {
-          values.push(value);
+          // Value constructed dynamically can be an array of values (e.g. for the list of visible scenarios): use
+          // spread operator here to add each of these values to the "values" array
+          if (Array.isArray(value)) {
+            values.push(...value);
+          } else {
+            values.push(value);
+          }
         }
       }
       if (values.length !== 0) {
@@ -51,10 +56,18 @@ const constructDynamicFilters = (filtersConfig, objectToFilter) => {
   return result;
 };
 
-const constructScenarioDTO = (scenario) => {
+const constructScenarioDTO = (scenario, visibleScenarios) => {
   if (!scenario) {
     return null;
   }
+
+  const visibleScenariosIds = visibleScenarios?.map((scenario) => scenario.id);
+  const visibleScenariosSimulationRunsIds = visibleScenarios
+    ?.map((scenario) => scenario.runId)
+    .filter((i) => i != null);
+  const visibleScenariosCsmSimulationRunsIds = visibleScenarios
+    ?.map((scenario) => scenario.csmSimulationRun)
+    .filter((i) => i != null);
 
   const csmSimRun = scenario?.lastRun?.csmSimulationRun === undefined ? null : scenario?.lastRun?.csmSimulationRun;
 
@@ -66,7 +79,10 @@ const constructScenarioDTO = (scenario) => {
     scenario.rootId,
     scenario.parentId,
     scenario.ownerId,
-    scenario.solutionId
+    scenario.solutionId,
+    visibleScenariosIds,
+    visibleScenariosSimulationRunsIds,
+    visibleScenariosCsmSimulationRunsIds
   );
   return scenarioDTO;
 };
