@@ -1,3 +1,13 @@
+## **1.3.1** <sub><sup>2023-04-27 (ed15212...f39eb27)</sup></sub>
+
+- update dependencies
+
+## **1.3.0** <sub><sup>2023-01-13</sup></sub>
+
+### Features
+
+- add new PowerBI filters on scenarios
+
 ## **1.2.1** <sub><sup>2022-11-04 (81676ee...81676ee)</sup></sub>
 
 - update dependencies
