@@ -69,6 +69,12 @@ async function _acquireTokensByRequestAndAccount(tokenReq, account) {
       if (silentTokenFetchError.errorCode === 'no_tokens_found') {
         // No token found during acquireTokenSilent, ignore this error, nothing to do
         return;
+      } else if (silentTokenFetchError.errorCode === 'login_required') {
+        console.warn(
+          'Silent authentication not possible, user is not logged in. This usually happens when the user session ' +
+            'has expired. Please try to log in again.'
+        );
+        return;
       } else if (silentTokenFetchError.errorMessage?.indexOf('interaction_required') !== -1) {
         msalApp
           .acquireTokenPopup(tokenReq)
