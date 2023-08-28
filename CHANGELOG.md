@@ -1,3 +1,9 @@
+## **1.3.2** <sub><sup>2023-08-28 (7940f43...0fba394)</sup></sub>
+
+### Bug Fixes
+
+- prevent 'silent sign\-in in request' error message ([0fb4731](https://github.com/Cosmo-Tech/webapp-component-azure/commit/0fb4731))
+
 ## **1.3.1** <sub><sup>2023-04-27 (ed15212...f39eb27)</sup></sub>
 
 - update dependencies
