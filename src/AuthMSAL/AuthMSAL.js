@@ -60,6 +60,7 @@ async function _acquireTokensByRequestAndAccount(tokenReq, account) {
 
   tokenReq.account = account;
 
+  await msalApp.initialize();
   return await msalApp
     .acquireTokenSilent(tokenReq)
     .then(function (tokenRes) {
