@@ -1,3 +1,9 @@
+## **1.3.4** <sub><sup>2023-10-09 (f1fc84f...f1fc84f)</sup></sub>
+
+### Bug Fixes
+
+- fix login error (revert upgrade of @azure/msal-browser, going back from 3.x to 2.x)
+
 ## **1.3.3** <sub><sup>2023-10-06 (923b441...15b0be6)</sup></sub>
 
 - update dependencies
