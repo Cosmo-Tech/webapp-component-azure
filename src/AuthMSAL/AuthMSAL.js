@@ -29,9 +29,10 @@ const authData = {
 let config = null;
 let msalApp = null;
 
-function setConfig(newConfig) {
+async function setConfig(newConfig) {
   config = newConfig;
   msalApp = new msal.PublicClientApplication(config.msalConfig);
+  await msalApp.initialize();
 }
 
 function checkInit() {
