@@ -10,6 +10,7 @@
   },
   "plugins": ["prettier"],
   "rules": {
+    "no-constant-binary-expression": "error",
     "semi": [2, "always"],
     "max-len": ["error", { "code": 120 }]
   }
