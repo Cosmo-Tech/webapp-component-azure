@@ -1,6 +1,5 @@
 // Copyright (c) Cosmo Tech.
 // Licensed under the MIT license.
-
 import * as msal from '@azure/msal-browser';
 
 // Functions to read & write from storage.
