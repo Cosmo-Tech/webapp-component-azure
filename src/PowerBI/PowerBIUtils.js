@@ -1,6 +1,5 @@
 // Copyright (c) Cosmo Tech.
 // Licensed under the MIT license.
-
 import { PowerBIReportEmbedSimpleFilter, PowerBIReportEmbedMultipleFilter } from './PowerBIReportEmbedFilter';
 import { ScenarioDTO } from './ScenarioDTO';
 
