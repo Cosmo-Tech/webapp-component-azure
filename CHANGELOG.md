@@ -1,3 +1,9 @@
+## **1.3.5** <sub><sup>2024-06-24 (6988b2e...5214e79)</sup></sub>
+
+### Bug Fixes
+
+- fix redirection URL after login for AuthMSAL provider ([5214e79](https://github.com/Cosmo-Tech/webapp-component-azure/commit/5214e79))
+
 ## **1.3.4** <sub><sup>2023-10-09 (f1fc84f...f1fc84f)</sup></sub>
 
 ### Bug Fixes
