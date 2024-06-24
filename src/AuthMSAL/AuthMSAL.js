@@ -46,7 +46,7 @@ function checkInit() {
 }
 
 function redirectOnAuthSuccess() {
-  window.location.href = '/';
+  window.location.href = config?.msalConfig?.auth?.redirectUri ?? '/';
 }
 
 async function _acquireTokensByRequestAndAccount(tokenReq, account) {
