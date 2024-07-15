@@ -1,3 +1,17 @@
+## **2.0.0** <sub><sup>2024-07-15 (1f7e2d3...f1f6bf6)</sup></sub>
+
+### Features
+
+- add MSAL initialization step in setConfig function ([7efd6ba](https://github.com/Cosmo-Tech/webapp-component-azure/commit/7efd6ba))
+
+### Bug Fixes
+
+- force removal of MSAL interaction status if it exists in session storage ([bebff11](https://github.com/Cosmo-Tech/webapp-component-azure/commit/bebff11))
+
+### BREAKING CHANGES
+
+- setConfig is now an async function and must be called with the `await` keyword ([7efd6ba](https://github.com/Cosmo-Tech/webapp-component-azure/commit/7efd6ba))
+
 ## **1.3.5** <sub><sup>2024-06-24 (6988b2e...5214e79)</sup></sub>
 
 ### Bug Fixes
