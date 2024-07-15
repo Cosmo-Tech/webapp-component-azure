@@ -29,9 +29,10 @@ const authData = {
 let config = null;
 let msalApp = null;
 
-function setConfig(newConfig) {
+async function setConfig(newConfig) {
   config = newConfig;
   msalApp = new msal.PublicClientApplication(config.msalConfig);
+  await msalApp.initialize();
 }
 
 function checkInit() {
@@ -152,6 +153,13 @@ function signIn() {
   if (!checkInit()) {
     return;
   }
+
+  // Force removal of MSAL interaction status if it exists in session storage (it happens sometimes after logout)
+  const itemKey = 'msal.interaction.status';
+  if (sessionStorage.getItem(itemKey)) {
+    sessionStorage.removeItem(itemKey);
+  }
+
   return msalApp
     .loginPopup(config.loginRequest)
     .then(handleResponse)
