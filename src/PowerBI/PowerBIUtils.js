@@ -55,35 +55,29 @@ const constructDynamicFilters = (filtersConfig, objectToFilter) => {
   return result;
 };
 
-const constructScenarioDTO = (scenario, visibleScenarios) => {
-  if (!scenario) {
-    return null;
-  }
-
+const constructScenarioDTO = (targetScenario, visibleScenarios) => {
   const visibleScenariosIds = visibleScenarios?.map((scenario) => scenario.id);
   const visibleScenariosSimulationRunsIds = visibleScenarios
     ?.map((scenario) => scenario.runId)
-    .filter((i) => i != null);
+    .filter((item) => item != null);
   const visibleScenariosCsmSimulationRunsIds = visibleScenarios
     ?.map((scenario) => scenario.csmSimulationRun)
-    .filter((i) => i != null);
+    .filter((item) => item != null);
 
-  const csmSimRun = scenario?.lastRun?.csmSimulationRun === undefined ? null : scenario?.lastRun?.csmSimulationRun;
-
-  const scenarioDTO = new ScenarioDTO(
-    scenario.id,
-    scenario.name,
-    scenario.state,
-    csmSimRun,
-    scenario.rootId,
-    scenario.parentId,
-    scenario.ownerId,
-    scenario.solutionId,
-    visibleScenariosIds,
-    visibleScenariosSimulationRunsIds,
-    visibleScenariosCsmSimulationRunsIds
+  const NO_SCENARIO_VALUE = ['None'];
+  return new ScenarioDTO(
+    targetScenario?.id,
+    targetScenario?.name,
+    targetScenario?.state,
+    targetScenario?.lastRun?.csmSimulationRun === undefined ? null : targetScenario?.lastRun?.csmSimulationRun,
+    targetScenario?.rootId,
+    targetScenario?.parentId,
+    targetScenario?.ownerId,
+    targetScenario?.solutionId,
+    visibleScenariosIds.length === 0 ? NO_SCENARIO_VALUE : visibleScenariosIds,
+    visibleScenariosSimulationRunsIds.length === 0 ? NO_SCENARIO_VALUE : visibleScenariosSimulationRunsIds,
+    visibleScenariosCsmSimulationRunsIds.length === 0 ? NO_SCENARIO_VALUE : visibleScenariosCsmSimulationRunsIds
   );
-  return scenarioDTO;
 };
 
 export const PowerBIUtils = {
