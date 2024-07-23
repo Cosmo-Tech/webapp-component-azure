@@ -1,3 +1,9 @@
+## **1.3.6** <sub><sup>2024-07-23 (1d3c5eb...1d3c5eb)</sup></sub>
+
+### Bug Fixes
+
+- \[SDCOSMO\-1886\] fix behavior of dynamic filters when selection list is empty ([1d3c5eb](https://github.com/Cosmo-Tech/webapp-component-azure/commit/1d3c5eb))
+
 ## **1.3.5** <sub><sup>2024-06-24 (6988b2e...5214e79)</sup></sub>
 
 ### Bug Fixes
