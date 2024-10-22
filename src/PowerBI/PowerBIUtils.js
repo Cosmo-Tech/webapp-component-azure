@@ -69,7 +69,7 @@ const constructScenarioDTO = (targetScenario, visibleScenarios) => {
     targetScenario?.id,
     targetScenario?.name,
     targetScenario?.state,
-    targetScenario?.lastRun?.csmSimulationRun ?? null,
+    targetScenario?.lastRunId ?? null, // Since API v3.2, csmSimulationRun is equivalent to lastRunId
     targetScenario?.rootId,
     targetScenario?.parentId,
     targetScenario?.ownerId,
@@ -77,7 +77,7 @@ const constructScenarioDTO = (targetScenario, visibleScenarios) => {
     visibleScenariosIds.length === 0 ? NO_SCENARIO_VALUE : visibleScenariosIds,
     visibleScenariosSimulationRunsIds.length === 0 ? NO_SCENARIO_VALUE : visibleScenariosSimulationRunsIds,
     visibleScenariosCsmSimulationRunsIds.length === 0 ? NO_SCENARIO_VALUE : visibleScenariosCsmSimulationRunsIds,
-    targetScenario?.lastRun?.scenarioRunId ?? null
+    targetScenario?.lastRunId ?? null
   );
 };
 
