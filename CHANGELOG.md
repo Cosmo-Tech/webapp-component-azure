@@ -1,3 +1,10 @@
+## **2.0.1** <sub><sup>2024-10-22 (0667f8b...2340885)</sup></sub>
+
+### Bug Fixes
+
+- \[SDCOSMO\-1886\] fix behavior of dynamic filters when selection list is empty ([0667f8b](https://github.com/Cosmo-Tech/webapp-component-azure/commit/0667f8b))
+- \[PROD\-14001\] add missing dynamic filter for scenario run id ([2340885](https://github.com/Cosmo-Tech/webapp-component-azure/commit/2340885))
+
 ## **2.0.0** <sub><sup>2024-07-15 (1f7e2d3...f1f6bf6)</sup></sub>
 
 ### Features
