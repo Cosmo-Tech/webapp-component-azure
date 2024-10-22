@@ -13,7 +13,8 @@ export class ScenarioDTO {
     solutionId,
     visibleScenariosIds,
     visibleScenariosSimulationRunsIds,
-    visibleScenariosCsmSimulationRunsIds
+    visibleScenariosCsmSimulationRunsIds,
+    lastRunId
   ) {
     this.id = id;
     this.name = name;
@@ -26,5 +27,6 @@ export class ScenarioDTO {
     this.visibleScenariosIds = visibleScenariosIds;
     this.visibleScenariosSimulationRunsIds = visibleScenariosSimulationRunsIds;
     this.visibleScenariosCsmSimulationRunsIds = visibleScenariosCsmSimulationRunsIds;
+    this.lastRunId = lastRunId;
   }
 }

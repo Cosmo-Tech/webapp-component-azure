@@ -69,14 +69,15 @@ const constructScenarioDTO = (targetScenario, visibleScenarios) => {
     targetScenario?.id,
     targetScenario?.name,
     targetScenario?.state,
-    targetScenario?.lastRun?.csmSimulationRun === undefined ? null : targetScenario?.lastRun?.csmSimulationRun,
+    targetScenario?.lastRun?.csmSimulationRun ?? null,
     targetScenario?.rootId,
     targetScenario?.parentId,
     targetScenario?.ownerId,
     targetScenario?.solutionId,
     visibleScenariosIds.length === 0 ? NO_SCENARIO_VALUE : visibleScenariosIds,
     visibleScenariosSimulationRunsIds.length === 0 ? NO_SCENARIO_VALUE : visibleScenariosSimulationRunsIds,
-    visibleScenariosCsmSimulationRunsIds.length === 0 ? NO_SCENARIO_VALUE : visibleScenariosCsmSimulationRunsIds
+    visibleScenariosCsmSimulationRunsIds.length === 0 ? NO_SCENARIO_VALUE : visibleScenariosCsmSimulationRunsIds,
+    targetScenario?.lastRun?.scenarioRunId ?? null
   );
 };
 

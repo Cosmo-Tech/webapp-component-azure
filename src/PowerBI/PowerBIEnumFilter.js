@@ -2,6 +2,7 @@
 // Licensed under the MIT license.
 
 export const POWER_BI_FIELD_ENUM = {
+  LAST_RUN_ID: 'lastRunId',
   SCENARIO_ID: 'id',
   SCENARIO_CSM_SIMULATION_RUN: 'csmSimulationRun',
   SCENARIO_STATE: 'state',
