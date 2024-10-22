@@ -1,3 +1,13 @@
+## **3.0.0** <sub><sup>2024-10-22 (69c40f1...69c40f1)</sup></sub>
+
+### BREAKING CHANGES
+
+- new versions of @cosmotech/azure now require to use at least v4 of the Cosmo Tech API
+
+### Bug Fixes
+
+- adapt scenario DTO to API v4 runners new structure ([69c40f1](https://github.com/Cosmo-Tech/webapp-component-azure/commit/69c40f1))
+
 ## **2.0.1** <sub><sup>2024-10-22 (0667f8b...2340885)</sup></sub>
 
 ### Bug Fixes
