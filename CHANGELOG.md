@@ -1,3 +1,7 @@
+## **3.0.1** <sub><sup>2024-11-07 (337b3d1...337b3d1)</sup></sub>
+
+- update dependencies
+
 ## **3.0.0** <sub><sup>2024-10-22 (69c40f1...69c40f1)</sup></sub>
 
 ### BREAKING CHANGES
