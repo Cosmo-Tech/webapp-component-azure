@@ -1,3 +1,8 @@
+## **2.0.2** <sub><sup>2025-09-17 (0a68012...66c9670)</sup></sub>
+
+- upgrade to node 24
+- update dependencies
+
 ## **2.0.1** <sub><sup>2024-10-22 (0667f8b...2340885)</sup></sub>
 
 ### Bug Fixes
