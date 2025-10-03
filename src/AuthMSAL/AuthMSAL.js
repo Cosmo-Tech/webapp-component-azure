@@ -199,14 +199,27 @@ function isAsync() {
 }
 
 function _extractRolesFromAccessToken(accessToken) {
-  let result = [];
-  if (accessToken) {
-    const decodedToken = JSON.parse(atob(accessToken.split('.')[1]));
-    if (decodedToken?.roles) {
-      result = decodedToken?.roles;
-    }
+  if (!accessToken) {
+    console.error("Can't extract user roles: access token is null or undefined");
+    return [];
   }
-  return result;
+
+  const tokenPayload = accessToken.split('.')[1];
+  if (!tokenPayload) {
+    console.error("Can't extract user roles: access token is ill-formed");
+    console.error(accessToken);
+    return [];
+  }
+
+  try {
+    const decoded = atob(tokenPayload.replace(/-/g, '+').replace(/_/g, '/'));
+    const parsed = JSON.parse(decoded);
+    return parsed?.roles ?? [];
+  } catch (e) {
+    console.error("Can't extract user roles: failed to decode and parse access token");
+    console.error(accessToken);
+    return [];
+  }
 }
 
 async function isUserSignedIn() {
