@@ -1,3 +1,10 @@
+## **2.0.3**&emsp;<sub><sup>2025-10-03 (cdfe0a...c0f372d)</sup></sub>
+
+### Bug Fixes
+
+- fix possible errors when decoding base64 token payloads ([c0f372d](https://github.com/Cosmo-Tech/webapp-component-azure/commit/c0f372d7e70bebb48b66be9fe2aff5894665f7cc))
+- revert @azure/msal-browser upgrade, going back from v4 to v3 to prevent possible breaking changes
+
 ## **2.0.2** <sub><sup>2025-09-17 (0a68012...66c9670)</sup></sub>
 
 - upgrade to node 24
