@@ -1,3 +1,7 @@
+## **2.0.4**&emsp;<sub><sup>2025-12-01 (2302c5...2302c5)</sup></sub>
+
+- update dependencies
+
 ## **2.0.3**&emsp;<sub><sup>2025-10-03 (cdfe0a...c0f372d)</sup></sub>
 
 ### Bug Fixes
