@@ -57,27 +57,22 @@ const constructDynamicFilters = (filtersConfig, objectToFilter) => {
 
 const constructScenarioDTO = (targetScenario, visibleScenarios) => {
   const visibleScenariosIds = visibleScenarios?.map((scenario) => scenario.id);
-  const visibleScenariosSimulationRunsIds = visibleScenarios
-    ?.map((scenario) => scenario.runId)
-    .filter((item) => item != null);
-  const visibleScenariosCsmSimulationRunsIds = visibleScenarios
-    ?.map((scenario) => scenario.csmSimulationRun)
+  const visibleScenariosLastRunIds = visibleScenarios
+    ?.map((scenario) => scenario?.lastRunInfo?.lastRunId)
     .filter((item) => item != null);
 
   const NO_SCENARIO_VALUE = ['None'];
   return new ScenarioDTO(
     targetScenario?.id,
     targetScenario?.name,
-    targetScenario?.state,
-    targetScenario?.lastRunId ?? null, // Since API v3.2, csmSimulationRun is equivalent to lastRunId
+    targetScenario?.lastRunInfo?.lastRunId ?? null,
+    targetScenario?.lastRunInfo?.lastRunStatus,
     targetScenario?.rootId,
     targetScenario?.parentId,
-    targetScenario?.ownerId,
+    targetScenario?.createInfo?.userId,
     targetScenario?.solutionId,
     visibleScenariosIds.length === 0 ? NO_SCENARIO_VALUE : visibleScenariosIds,
-    visibleScenariosSimulationRunsIds.length === 0 ? NO_SCENARIO_VALUE : visibleScenariosSimulationRunsIds,
-    visibleScenariosCsmSimulationRunsIds.length === 0 ? NO_SCENARIO_VALUE : visibleScenariosCsmSimulationRunsIds,
-    targetScenario?.lastRunId ?? null
+    visibleScenariosLastRunIds.length === 0 ? NO_SCENARIO_VALUE : visibleScenariosLastRunIds
   );
 };
 

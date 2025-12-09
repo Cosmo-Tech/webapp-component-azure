@@ -5,28 +5,24 @@ export class ScenarioDTO {
   constructor(
     id,
     name,
-    state,
-    csmSimulationRun,
-    masterId,
+    lastRunId,
+    lastRunStatus,
+    rootId,
     parentId,
     ownerId,
     solutionId,
     visibleScenariosIds,
-    visibleScenariosSimulationRunsIds,
-    visibleScenariosCsmSimulationRunsIds,
-    lastRunId
+    visibleScenariosLastRunIds
   ) {
     this.id = id;
     this.name = name;
-    this.state = state;
-    this.csmSimulationRun = csmSimulationRun;
-    this.masterId = masterId === null ? id : masterId;
+    this.lastRunId = lastRunId;
+    this.lastRunStatus = lastRunStatus;
+    this.rootId = rootId === null ? id : rootId;
     this.parentId = parentId;
     this.ownerId = ownerId;
     this.solutionId = solutionId;
     this.visibleScenariosIds = visibleScenariosIds;
-    this.visibleScenariosSimulationRunsIds = visibleScenariosSimulationRunsIds;
-    this.visibleScenariosCsmSimulationRunsIds = visibleScenariosCsmSimulationRunsIds;
-    this.lastRunId = lastRunId;
+    this.visibleScenariosLastRunIds = visibleScenariosLastRunIds;
   }
 }
