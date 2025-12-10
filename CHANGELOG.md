@@ -1,3 +1,7 @@
+## **3.0.3** <sub><sup>2025-12-10 (9acc99c...228b73a)</sup></sub>
+
+- update dependencies
+
 ## **3.0.2** <sub><sup>2025-09-19 (57c5fe6...22bba05)</sup></sub>
 
 - upgrade to node 24
