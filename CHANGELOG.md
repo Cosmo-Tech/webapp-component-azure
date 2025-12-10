@@ -1,3 +1,20 @@
+## **4.0.0-dev.0** <sub><sup>2025-12-10 (cb1e5be...cb1e5be)</sup></sub>
+
+### BREAKING CHANGES ([cb1e5be](https://github.com/Cosmo-Tech/webapp-component-azure/commit/cb1e5be))
+
+- in scenario DTO construction, some input data now expect API v5 format:
+  - scenario.ownerId replaced by scenario.createInfo.userId
+  - scenario.lastRunId replaced by scenario.lastRunInfo.lastRunId
+  - scenario.state replaced by scenario.lastRunInfo.lastRunStatus
+- in scenario DTO, some fields have been renamed:
+  - renamed visibleScenariosSimulationRunsIds to visibleScenariosLastRunIds
+  - renamed masterId to rootId
+  - renamed state to lastRunStatus
+- removed csmSimulationRun from scenario DTO constructor
+- removed visibleScenariosCsmSimulationRunsIds from scenario DTO constructor
+- changed parameters and parameter order in constructScenarioDTO function
+- changed keys and values in enum POWER_BI_FIELD_ENUM
+
 ## **3.0.3** <sub><sup>2025-12-10 (9acc99c...228b73a)</sup></sub>
 
 - update dependencies
