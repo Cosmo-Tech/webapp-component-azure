@@ -12,19 +12,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@azure/msal-browser@npm:^4.26.2":
-  version: 4.26.2
-  resolution: "@azure/msal-browser@npm:4.26.2"
+"@azure/msal-browser@npm:^4.27.0":
+  version: 4.27.0
+  resolution: "@azure/msal-browser@npm:4.27.0"
   dependencies:
-    "@azure/msal-common": "npm:15.13.2"
-  checksum: 10c0/2150f5f997e699d2f598ac87dea8634dd6226c3573838b575cec157ffbba029860e41296a6da9b66ff64092eff69ec3c9aee4a0112a5c89ede06c03a72b02889
+    "@azure/msal-common": "npm:15.13.3"
+  checksum: 10c0/da10b0adc1c9c937a57ae66eb70ab53682e71171a0a48499931b745bc91c4f68f81e6cf52e5280a78b5865963e2246f60321822a551ed9a340cc3c4ae1ccfdcd
   languageName: node
   linkType: hard
 
-"@azure/msal-common@npm:15.13.2":
-  version: 15.13.2
-  resolution: "@azure/msal-common@npm:15.13.2"
-  checksum: 10c0/706e9471c14b92ac4015a50ee3724dc459e4377572caba369ae5cefc225605165717af865290c2e245f225eae6104df220c44b7e24a5ebc116ac0a59ec254a64
+"@azure/msal-common@npm:15.13.3":
+  version: 15.13.3
+  resolution: "@azure/msal-common@npm:15.13.3"
+  checksum: 10c0/0d71c31ad098153985cb918c2bda9698aae0a15b659da5c0867728313ba6743854cc112332b39ba1a187b81dfc0abba22b1c22ee6f245e511c5ecec179832b03
   languageName: node
   linkType: hard
 
@@ -1363,7 +1363,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@cosmotech/azure@workspace:."
   dependencies:
-    "@azure/msal-browser": "npm:^4.26.2"
+    "@azure/msal-browser": "npm:^4.27.0"
     "@babel/core": "npm:^7.28.5"
     "@babel/preset-env": "npm:^7.28.5"
     "@babel/preset-react": "npm:^7.28.5"
@@ -1384,7 +1384,7 @@ __metadata:
     globals: "npm:^16.5.0"
     neostandard: "npm:^0.12.2"
     postcss: "npm:^8.5.6"
-    prettier: "npm:^3.7.3"
+    prettier: "npm:^3.7.4"
     rollup: "npm:^4.53.3"
     rollup-plugin-peer-deps-external: "npm:^2.2.4"
     rollup-plugin-postcss: "npm:^4.0.2"
@@ -6718,12 +6718,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.7.3":
-  version: 3.7.3
-  resolution: "prettier@npm:3.7.3"
+"prettier@npm:^3.7.4":
+  version: 3.7.4
+  resolution: "prettier@npm:3.7.4"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10c0/ee86bb06121c74dadc54f30b6f99aff6288966d9b842ce501d6991e20d20c6ce2d45028651b3b0955ca6e5fa89c1bee1e72b6f810243a93cef8bc69737972ef7
+  checksum: 10c0/9675d2cd08eacb1faf1d1a2dbfe24bfab6a912b059fc9defdb380a408893d88213e794a40a2700bd29b140eb3172e0b07c852853f6e22f16f3374659a1a13389
   languageName: node
   linkType: hard
 
