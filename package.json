@@ -1,6 +1,6 @@
 {
   "name": "@cosmotech/azure",
-  "version": "4.0.0-dev.0",
+  "version": "4.0.0-dev.1",
   "description": "",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
