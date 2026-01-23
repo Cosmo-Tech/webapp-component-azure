@@ -56,10 +56,9 @@ const constructDynamicFilters = (filtersConfig, objectToFilter) => {
 };
 
 const constructScenarioDTO = (targetScenario, visibleScenarios) => {
-  const visibleScenariosIds = visibleScenarios?.map((scenario) => scenario.id);
-  const visibleScenariosLastRunIds = visibleScenarios
-    ?.map((scenario) => scenario?.lastRunInfo?.lastRunId)
-    .filter((item) => item != null);
+  const visibleScenariosIds = visibleScenarios?.map((scenario) => scenario.id) ?? [];
+  const visibleScenariosLastRunIds =
+    visibleScenarios?.map((scenario) => scenario?.lastRunInfo?.lastRunId).filter((item) => item != null) ?? [];
 
   const NO_SCENARIO_VALUE = ['None'];
   return new ScenarioDTO(
