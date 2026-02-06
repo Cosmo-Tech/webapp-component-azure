@@ -1,4 +1,4 @@
-## **4.0.0-dev.0** <sub><sup>2025-12-10 (cb1e5be...cb1e5be)</sup></sub>
+## **4.0.0** <sub><sup>2026-02-06</sup></sub>
 
 ### BREAKING CHANGES ([cb1e5be](https://github.com/Cosmo-Tech/webapp-component-azure/commit/cb1e5be))
 
@@ -14,6 +14,10 @@
 - removed visibleScenariosCsmSimulationRunsIds from scenario DTO constructor
 - changed parameters and parameter order in constructScenarioDTO function
 - changed keys and values in enum POWER_BI_FIELD_ENUM
+
+### Bug Fixes
+
+- fix possible error when calling constructScenarioDTO ([3fa6a25](https://github.com/Cosmo-Tech/webapp-component-azure/commit/3fa6a25))
 
 ## **3.0.3** <sub><sup>2025-12-10 (9acc99c...228b73a)</sup></sub>
 
