@@ -1,3 +1,7 @@
+## **4.0.1** <sub><sup>2026-02-23 (d09cd58...75ae32a)</sup></sub>
+
+- update dependencies
+
 ## **4.0.0** <sub><sup>2026-02-06</sup></sub>
 
 ### BREAKING CHANGES ([cb1e5be](https://github.com/Cosmo-Tech/webapp-component-azure/commit/cb1e5be))
