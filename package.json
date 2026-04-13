@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/Cosmo-Tech/webapp-component-azure#readme",
   "dependencies": {
-    "@azure/msal-browser": "^4.29.1"
+    "@azure/msal-browser": "^4.30.0"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
@@ -33,22 +33,18 @@
     "@rollup/plugin-commonjs": "^29.0.2",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
-    "eslint": "^10.0.3",
+    "eslint": "^10.2.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-n": "^17.24.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-promise": "^7.2.1",
-    "globals": "^17.4.0",
+    "globals": "^17.5.0",
     "neostandard": "^0.13.0",
-    "prettier": "^3.8.1",
-    "rollup": "^4.59.0",
+    "prettier": "^3.8.2",
+    "rollup": "^4.60.1",
     "rollup-plugin-peer-deps-external": "^2.2.4"
-  },
-  "resolutions": {
-    "flatted": "^3.4.0",
-    "tar": "^7.5.10"
   },
   "packageManager": "yarn@4.9.4"
 }
