@@ -1,3 +1,7 @@
+## **4.0.3** <sub><sup>2026-06-12 (a255c37...e112311)</sup></sub>
+
+- update dependencies
+
 ## **4.0.2** <sub><sup>2026-03-17 (9059ed6...8594c1f)</sup></sub>
 
 - update dependencies
