@@ -1,3 +1,9 @@
+## **5.0.0** <sub><sup>2026-07-01 (b798658...f2fcc8b)</sup></sub>
+
+### BREAKING CHANGES ([b798658](https://github.com/Cosmo-Tech/webapp-component-azure/commit/b798658))
+
+- for the AuthMSAL auth provider, authentication data will now be stored in sessionStorage instead of localStorage
+
 ## **4.0.3** <sub><sup>2026-06-12 (a255c37...e112311)</sup></sub>
 
 - update dependencies
