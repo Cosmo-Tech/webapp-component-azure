@@ -16,43 +16,30 @@ function constructDynamicValue(filterValue, objectToFilter) {
   return res;
 }
 
-const constructDynamicFilters = (filtersConfig, objectToFilter) => {
-  const result = [];
-  if (!objectToFilter || !filtersConfig) {
-    return result;
+const constructDynamicFilter = (filterConfig, objectToFilter) => {
+  const { values: filterValues, target } = filterConfig;
+
+  if (Array.isArray(filterValues)) {
+    // Value constructed dynamically can be an array of values (e.g. for the list of visible scenarios): use
+    // flatMap here to flatten the resulting array
+    const values = filterValues.flatMap((filterValue) => {
+      const value = constructDynamicValue(filterValue, objectToFilter);
+      if (value === undefined) return []; // Will be filtered out by flatMap
+      return Array.isArray(value) ? value : [value];
+    });
+    return values.length === 0 ? undefined : new PowerBIReportEmbedMultipleFilter(target.table, target.column, values);
   }
 
-  for (const filterConfig of filtersConfig) {
-    const filterValues = filterConfig.values;
-    let filter;
-    if (Array.isArray(filterValues)) {
-      const values = [];
-      for (const filterValue of filterValues) {
-        const value = constructDynamicValue(filterValue, objectToFilter, filterConfig);
-        if (value !== undefined) {
-          // Value constructed dynamically can be an array of values (e.g. for the list of visible scenarios): use
-          // spread operator here to add each of these values to the "values" array
-          if (Array.isArray(value)) {
-            values.push(...value);
-          } else {
-            values.push(value);
-          }
-        }
-      }
-      if (values.length !== 0) {
-        filter = new PowerBIReportEmbedMultipleFilter(filterConfig.target.table, filterConfig.target.column, values);
-        result.push(filter);
-      }
-    } else if (typeof filterValues === 'string') {
-      const filterValue = filterConfig.values;
-      const value = constructDynamicValue(filterValue, objectToFilter, filterConfig);
-      if (value !== undefined) {
-        filter = new PowerBIReportEmbedSimpleFilter(filterConfig.target.table, filterConfig.target.column, [value]);
-        result.push(filter);
-      }
-    }
-  }
-  return result;
+  if (typeof filterValues !== 'string') return undefined;
+
+  const value = constructDynamicValue(filterValues, objectToFilter);
+  return value === undefined ? undefined : new PowerBIReportEmbedSimpleFilter(target.table, target.column, [value]);
+};
+
+const constructDynamicFilters = (filtersConfig, objectToFilter) => {
+  if (!objectToFilter || !filtersConfig) return [];
+
+  return filtersConfig.map((filterConfig) => constructDynamicFilter(filterConfig, objectToFilter)).filter(Boolean);
 };
 
 const constructScenarioDTO = (targetScenario, visibleScenarios) => {
