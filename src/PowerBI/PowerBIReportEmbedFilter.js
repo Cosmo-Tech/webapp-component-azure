@@ -3,7 +3,7 @@
 
 export class PowerBIReportEmbedSimpleFilter {
   constructor(table, column, acceptedValue) {
-    this.$schema = 'http://powerbi.com/product/schema#basic';
+    this.$schema = 'https://powerbi.com/product/schema#basic';
     this.target = new PowerBIReportEmbedTarget(table, column);
     this.operator = 'eq';
     this.values = [acceptedValue];
@@ -15,7 +15,7 @@ export class PowerBIReportEmbedMultipleFilter {
     if (!Array.isArray(acceptedValues)) {
       throw new Error('acceptedValues should be an array');
     }
-    this.$schema = 'http://powerbi.com/product/schema#basic';
+    this.$schema = 'https://powerbi.com/product/schema#basic';
     this.target = new PowerBIReportEmbedTarget(table, column);
     this.operator = 'in';
     this.values = acceptedValues;
